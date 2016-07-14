@@ -69,14 +69,29 @@
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
   <script>
+    function filter(pokemon, q) {
+      const pokemonName = $(pokemon).find('.lightbox-caption > a').html().toLowerCase();
+      const doesMatch = (pokemonName.search(q) === 0);
+      if (q.length && !doesMatch) {
+        $(pokemon).addClass('hide');
+      } else {
+        $(pokemon).removeClass('hide');
+      }
+    }
+
+    function details(id) {
+      console.log(id);
+    }
+
     function search(input) {
-      const q = input.value;
+      const q = input.value.toLowerCase();
       $('.wikia-gallery-item').each(function(i, pokemon) {
-        const pokemonName = $(pokemon).find('.lightbox-caption > a').html();
-        if (q.length && q[0].toLowerCase() !== pokemonName[0].toLowerCase()) {
-          $(pokemon).addClass('hide');
+        if (q[0] === '#' && q.length > 1) {
+          const qArray = q.split('');
+          qArray.shift();
+          details(qArray.join(''));
         } else {
-          $(pokemon).removeClass('hide');
+          filter(pokemon, q);
         }
       });
     }
