@@ -79,17 +79,22 @@
       }
     }
 
-    function details(id) {
-      console.log(id);
+    function details(pokemon, id) {
+      const idHtml = $(pokemon).find('.lightbox-caption > .pokemonId').html().split('');
+      idHtml.shift();
+      const pokemonId = parseInt(idHtml.join(''));
+      if (id !== pokemonId) {
+        $(pokemon).addClass('hide');
+      } else {
+        $(pokemon).removeClass('hide');
+      }
     }
 
     function search(input) {
       const q = input.value.toLowerCase();
       $('.wikia-gallery-item').each(function(i, pokemon) {
-        if (q[0] === '#' && q.length > 1) {
-          const qArray = q.split('');
-          qArray.shift();
-          details(qArray.join(''));
+        if (q.length && parseInt(q) > -1) {
+          details(pokemon, parseInt(q));
         } else {
           filter(pokemon, q);
         }
@@ -99,7 +104,7 @@
 </head>
 <body>
   <div class="search">
-    <input onkeyup="search(this)" class="field" type="text" placeholder="Search Pokemon..." />
+    <input onkeyup="search(this)" class="field" type="text" placeholder="Search Pokemon by Name or Number" />
   </div>
 
   <div class=
@@ -125,7 +130,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #001 <a>Bulbasaur</a><br>
+        <span class="pokemonId">#001</span>
+        <a>Bulbasaur</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -155,7 +161,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #002 <a>Ivysaur</a><br>
+        <span class="pokemonId">#002</span>
+        <a>Ivysaur</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -185,7 +192,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #003 <a>Venusaur</a><br>
+        <span class="pokemonId">#003</span>
+        <a>Venusaur</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -215,7 +223,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #004 <a>Charmander</a><br>
+        <span class="pokemonId">#004</span>
+        <a>Charmander</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -242,7 +251,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #005 <a>Charmeleon</a><br>
+        <span class="pokemonId">#005</span>
+        <a>Charmeleon</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -269,7 +279,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #006 <a>Charizard</a><br>
+        <span class="pokemonId">#006</span>
+        <a>Charizard</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -299,7 +310,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #007 <a>Squirtle</a><br>
+        <span class="pokemonId">#007</span>
+        <a>Squirtle</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -326,7 +338,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #008 <a>Wartortle</a><br>
+        <span class="pokemonId">#008</span>
+        <a>Wartortle</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -353,7 +366,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #009 <a>Blastoise</a><br>
+        <span class="pokemonId">#009</span>
+        <a>Blastoise</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -380,7 +394,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #010 <a>Caterpie</a><br>
+        <span class="pokemonId">#010</span>
+        <a>Caterpie</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -407,7 +422,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #011 <a>Metapod</a><br>
+        <span class="pokemonId">#011</span>
+        <a>Metapod</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -434,7 +450,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #012 <a>Butterfree</a><br>
+        <span class="pokemonId">#012</span>
+        <a>Butterfree</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -464,7 +481,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #013 <a>Weedle</a><br>
+        <span class="pokemonId">#013</span>
+        <a>Weedle</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -494,7 +512,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #014 <a>Kakuna</a><br>
+        <span class="pokemonId">#014</span>
+        <a>Kakuna</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -524,7 +543,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #015 <a>Beedrill</a><br>
+        <span class="pokemonId">#015</span>
+        <a>Beedrill</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -554,7 +574,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #016 <a>Pidgey</a><br>
+        <span class="pokemonId">#016</span>
+        <a>Pidgey</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -584,7 +605,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #017 <a>Pidgeotto</a><br>
+        <span class="pokemonId">#017</span>
+        <a>Pidgeotto</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -614,7 +636,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #018 <a>Pidgeot</a><br>
+        <span class="pokemonId">#018</span>
+        <a>Pidgeot</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -644,7 +667,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #019 <a>Rattata</a><br>
+        <span class="pokemonId">#019</span>
+        <a>Rattata</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -671,7 +695,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #020 <a>Raticate</a><br>
+        <span class="pokemonId">#020</span>
+        <a>Raticate</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -698,7 +723,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #021 <a>Spearow</a><br>
+        <span class="pokemonId">#021</span>
+        <a>Spearow</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -728,7 +754,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #022 <a>Fearow</a><br>
+        <span class="pokemonId">#022</span>
+        <a>Fearow</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -758,7 +785,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #023 <a>Ekans</a><br>
+        <span class="pokemonId">#023</span>
+        <a>Ekans</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -785,7 +813,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #024 <a>Arbok</a><br>
+        <span class="pokemonId">#024</span>
+        <a>Arbok</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -812,7 +841,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #025 <a>Pikachu</a><br>
+        <span class="pokemonId">#025</span>
+        <a>Pikachu</a><br>
         <span style=
         "background-color: #F8D030; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #B8A038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -839,7 +869,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #026 <a>Raichu</a><br>
+        <span class="pokemonId">#026</span>
+        <a>Raichu</a><br>
         <span style=
         "background-color: #F8D030; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #B8A038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -866,7 +897,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #027 <a>Sandshrew</a><br>
+        <span class="pokemonId">#027</span>
+        <a>Sandshrew</a><br>
         <span style=
         "background-color: #E0C068; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -893,7 +925,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #028 <a>Sandslash</a><br>
+        <span class="pokemonId">#028</span>
+        <a>Sandslash</a><br>
         <span style=
         "background-color: #E0C068; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -921,7 +954,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #029 <a>Nidoran♀</a><br>
+        <span class="pokemonId">#029</span>
+        <a>Nidoran♀</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -948,7 +982,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #030 <a>Nidorina</a><br>
+        <span class="pokemonId">#030</span>
+        <a>Nidorina</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -975,7 +1010,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #031 <a>Nidoqueen</a><br>
+        <span class="pokemonId">#031</span>
+        <a>Nidoqueen</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1006,7 +1042,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #032 <a>Nidoran♂</a><br>
+        <span class="pokemonId">#032</span>
+        <a>Nidoran♂</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1033,7 +1070,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #033 <a>Nidorino</a><br>
+        <span class="pokemonId">#033</span>
+        <a>Nidorino</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1060,7 +1098,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #034 <a>Nidoking</a><br>
+        <span class="pokemonId">#034</span>
+        <a>Nidoking</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1090,7 +1129,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #035 <a>Clefairy</a><br>
+        <span class="pokemonId">#035</span>
+        <a>Clefairy</a><br>
         <span style=
         "background-color: #F0B6BC; border-style: solid none; border-width: 1px; border-top-color: #F5CAD1; border-bottom-color: #905F63; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1117,7 +1157,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #036 <a>Clefable</a><br>
+        <span class="pokemonId">#036</span>
+        <a>Clefable</a><br>
         <span style=
         "background-color: #F0B6BC; border-style: solid none; border-width: 1px; border-top-color: #F5CAD1; border-bottom-color: #905F63; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1144,7 +1185,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #037 <a>Vulpix</a><br>
+        <span class="pokemonId">#037</span>
+        <a>Vulpix</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1171,7 +1213,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #038 <a>Ninetales</a><br>
+        <span class="pokemonId">#038</span>
+        <a>Ninetales</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1198,7 +1241,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #039 <a>Jigglypuff</a><br>
+        <span class="pokemonId">#039</span>
+        <a>Jigglypuff</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1228,7 +1272,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #040 <a>Wigglytuff</a><br>
+        <span class="pokemonId">#040</span>
+        <a>Wigglytuff</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1258,7 +1303,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #041 <a>Zubat</a><br>
+        <span class="pokemonId">#041</span>
+        <a>Zubat</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1288,7 +1334,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #042 <a>Golbat</a><br>
+        <span class="pokemonId">#042</span>
+        <a>Golbat</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1318,7 +1365,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #043 <a>Oddish</a><br>
+        <span class="pokemonId">#043</span>
+        <a>Oddish</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1348,7 +1396,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #044 <a>Gloom</a><br>
+        <span class="pokemonId">#044</span>
+        <a>Gloom</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1378,7 +1427,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #045 <a>Vileplume</a><br>
+        <span class="pokemonId">#045</span>
+        <a>Vileplume</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1408,7 +1458,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #046 <a>Paras</a><br>
+        <span class="pokemonId">#046</span>
+        <a>Paras</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1438,7 +1489,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #047 <a>Parasect</a><br>
+        <span class="pokemonId">#047</span>
+        <a>Parasect</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1468,7 +1520,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #048 <a>Venonat</a><br>
+        <span class="pokemonId">#048</span>
+        <a>Venonat</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1498,7 +1551,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #049 <a>Venomoth</a><br>
+        <span class="pokemonId">#049</span>
+        <a>Venomoth</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1528,7 +1582,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #050 <a>Diglett</a><br>
+        <span class="pokemonId">#050</span>
+        <a>Diglett</a><br>
         <span style=
         "background-color: #E0C068; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1555,7 +1610,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #051 <a>Dugtrio</a><br>
+        <span class="pokemonId">#051</span>
+        <a>Dugtrio</a><br>
         <span style=
         "background-color: #E0C068; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1582,7 +1638,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #052 <a>Meowth</a><br>
+        <span class="pokemonId">#052</span>
+        <a>Meowth</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1609,7 +1666,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #053 <a>Persian</a><br>
+        <span class="pokemonId">#053</span>
+        <a>Persian</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1636,7 +1694,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #054 <a>Psyduck</a><br>
+        <span class="pokemonId">#054</span>
+        <a>Psyduck</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1663,7 +1722,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #055 <a>Golduck</a><br>
+        <span class="pokemonId">#055</span>
+        <a>Golduck</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1690,7 +1750,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #056 <a>Mankey</a><br>
+        <span class="pokemonId">#056</span>
+        <a>Mankey</a><br>
         <span style=
         "background-color: #C03028; border-style: solid none; border-width: 1px; border-top-color: #F08030; border-bottom-color: #484038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1717,7 +1778,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #057 <a>Primeape</a><br>
+        <span class="pokemonId">#057</span>
+        <a>Primeape</a><br>
         <span style=
         "background-color: #C03028; border-style: solid none; border-width: 1px; border-top-color: #F08030; border-bottom-color: #484038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1744,7 +1806,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #058 <a>Growlithe</a><br>
+        <span class="pokemonId">#058</span>
+        <a>Growlithe</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1771,7 +1834,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #059 <a>Arcanine</a><br>
+        <span class="pokemonId">#059</span>
+        <a>Arcanine</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1798,7 +1862,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #060 <a>Poliwag</a><br>
+        <span class="pokemonId">#060</span>
+        <a>Poliwag</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1825,7 +1890,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #061 <a>Poliwhirl</a><br>
+        <span class="pokemonId">#061</span>
+        <a>Poliwhirl</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1852,7 +1918,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #062 <a>Poliwrath</a><br>
+        <span class="pokemonId">#062</span>
+        <a>Poliwrath</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1882,7 +1949,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #063 <a>Abra</a><br>
+        <span class="pokemonId">#063</span>
+        <a>Abra</a><br>
         <span style=
         "background-color: #F85888; border-style: solid none; border-width: 1px; border-top-color: #F8C0B0; border-bottom-color: #789010; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1909,7 +1977,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #064 <a>Kadabra</a><br>
+        <span class="pokemonId">#064</span>
+        <a>Kadabra</a><br>
         <span style=
         "background-color: #F85888; border-style: solid none; border-width: 1px; border-top-color: #F8C0B0; border-bottom-color: #789010; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1936,7 +2005,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #065 <a>Alakazam</a><br>
+        <span class="pokemonId">#065</span>
+        <a>Alakazam</a><br>
         <span style=
         "background-color: #F85888; border-style: solid none; border-width: 1px; border-top-color: #F8C0B0; border-bottom-color: #789010; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1963,7 +2033,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #066 <a>Machop</a><br>
+        <span class="pokemonId">#066</span>
+        <a>Machop</a><br>
         <span style=
         "background-color: #C03028; border-style: solid none; border-width: 1px; border-top-color: #F08030; border-bottom-color: #484038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -1990,7 +2061,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #067 <a>Machoke</a><br>
+        <span class="pokemonId">#067</span>
+        <a>Machoke</a><br>
         <span style=
         "background-color: #C03028; border-style: solid none; border-width: 1px; border-top-color: #F08030; border-bottom-color: #484038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2017,7 +2089,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #068 <a>Machamp</a><br>
+        <span class="pokemonId">#068</span>
+        <a>Machamp</a><br>
         <span style=
         "background-color: #C03028; border-style: solid none; border-width: 1px; border-top-color: #F08030; border-bottom-color: #484038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2044,7 +2117,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #069 <a>Bellsprout</a><br>
+        <span class="pokemonId">#069</span>
+        <a>Bellsprout</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2074,7 +2148,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #070 <a>Weepinbell</a><br>
+        <span class="pokemonId">#070</span>
+        <a>Weepinbell</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2104,7 +2179,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #071 <a>Victreebel</a><br>
+        <span class="pokemonId">#071</span>
+        <a>Victreebel</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2134,7 +2210,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #072 <a>Tentacool</a><br>
+        <span class="pokemonId">#072</span>
+        <a>Tentacool</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2164,7 +2241,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #073 <a>Tentacruel</a><br>
+        <span class="pokemonId">#073</span>
+        <a>Tentacruel</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2194,7 +2272,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #074 <a>Geodude</a><br>
+        <span class="pokemonId">#074</span>
+        <a>Geodude</a><br>
         <span style=
         "background-color: #B8A038; border-style: solid none; border-width: 1px; border-top-color: #E0C068; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2224,7 +2303,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #075 <a>Graveler</a><br>
+        <span class="pokemonId">#075</span>
+        <a>Graveler</a><br>
         <span style=
         "background-color: #B8A038; border-style: solid none; border-width: 1px; border-top-color: #E0C068; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2254,7 +2334,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #076 <a>Golem</a><br>
+        <span class="pokemonId">#076</span>
+        <a>Golem</a><br>
         <span style=
         "background-color: #B8A038; border-style: solid none; border-width: 1px; border-top-color: #E0C068; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2284,7 +2365,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #077 <a>Ponyta</a><br>
+        <span class="pokemonId">#077</span>
+        <a>Ponyta</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2311,7 +2393,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #078 <a>Rapidash</a><br>
+        <span class="pokemonId">#078</span>
+        <a>Rapidash</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2338,7 +2421,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #079 <a>Slowpoke</a><br>
+        <span class="pokemonId">#079</span>
+        <a>Slowpoke</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2368,7 +2452,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #080 <a>Slowbro</a><br>
+        <span class="pokemonId">#080</span>
+        <a>Slowbro</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2398,7 +2483,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #081 <a>Magnemite</a><br>
+        <span class="pokemonId">#081</span>
+        <a>Magnemite</a><br>
         <span style=
         "background-color: #F8D030; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #B8A038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2428,7 +2514,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #082 <a>Magneton</a><br>
+        <span class="pokemonId">#082</span>
+        <a>Magneton</a><br>
         <span style=
         "background-color: #F8D030; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #B8A038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2459,7 +2546,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #083 <a>Farfetch'd</a><br>
+        <span class="pokemonId">#083</span>
+        <a>Farfetch'd</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2489,7 +2577,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #084 <a>Doduo</a><br>
+        <span class="pokemonId">#084</span>
+        <a>Doduo</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2519,7 +2608,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #085 <a>Dodrio</a><br>
+        <span class="pokemonId">#085</span>
+        <a>Dodrio</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2549,7 +2639,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #086 <a>Seel</a><br>
+        <span class="pokemonId">#086</span>
+        <a>Seel</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2576,7 +2667,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #087 <a>Dewgong</a><br>
+        <span class="pokemonId">#087</span>
+        <a>Dewgong</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2606,7 +2698,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #088 <a>Grimer</a><br>
+        <span class="pokemonId">#088</span>
+        <a>Grimer</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2633,7 +2726,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #089 <a>Muk</a><br>
+        <span class="pokemonId">#089</span>
+        <a>Muk</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2660,7 +2754,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #090 <a>Shellder</a><br>
+        <span class="pokemonId">#090</span>
+        <a>Shellder</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2687,7 +2782,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #091 <a>Cloyster</a><br>
+        <span class="pokemonId">#091</span>
+        <a>Cloyster</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2717,7 +2813,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #092 <a>Gastly</a><br>
+        <span class="pokemonId">#092</span>
+        <a>Gastly</a><br>
         <span style=
         "background-color: #705898; border-style: solid none; border-width: 1px; border-top-color: #A890F0; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2747,7 +2844,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #093 <a>Haunter</a><br>
+        <span class="pokemonId">#093</span>
+        <a>Haunter</a><br>
         <span style=
         "background-color: #705898; border-style: solid none; border-width: 1px; border-top-color: #A890F0; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2777,7 +2875,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #094 <a>Gengar</a><br>
+        <span class="pokemonId">#094</span>
+        <a>Gengar</a><br>
         <span style=
         "background-color: #705898; border-style: solid none; border-width: 1px; border-top-color: #A890F0; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2807,7 +2906,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #095 <a>Onix</a><br>
+        <span class="pokemonId">#095</span>
+        <a>Onix</a><br>
         <span style=
         "background-color: #B8A038; border-style: solid none; border-width: 1px; border-top-color: #E0C068; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2837,7 +2937,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #096 <a>Drowzee</a><br>
+        <span class="pokemonId">#096</span>
+        <a>Drowzee</a><br>
         <span style=
         "background-color: #F85888; border-style: solid none; border-width: 1px; border-top-color: #F8C0B0; border-bottom-color: #789010; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2864,7 +2965,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #097 <a>Hypno</a><br>
+        <span class="pokemonId">#097</span>
+        <a>Hypno</a><br>
         <span style=
         "background-color: #F85888; border-style: solid none; border-width: 1px; border-top-color: #F8C0B0; border-bottom-color: #789010; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2891,7 +2993,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #098 <a>Krabby</a><br>
+        <span class="pokemonId">#098</span>
+        <a>Krabby</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2918,7 +3021,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #099 <a>Kingler</a><br>
+        <span class="pokemonId">#099</span>
+        <a>Kingler</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2945,7 +3049,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #100 <a>Voltorb</a><br>
+        <span class="pokemonId">#100</span>
+        <a>Voltorb</a><br>
         <span style=
         "background-color: #F8D030; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #B8A038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2972,7 +3077,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #101 <a>Electrode</a><br>
+        <span class="pokemonId">#101</span>
+        <a>Electrode</a><br>
         <span style=
         "background-color: #F8D030; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #B8A038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -2999,7 +3105,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #102 <a>Exeggcute</a><br>
+        <span class="pokemonId">#102</span>
+        <a>Exeggcute</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3029,7 +3136,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #103 <a>Exeggutor</a><br>
+        <span class="pokemonId">#103</span>
+        <a>Exeggutor</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3059,7 +3167,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #104 <a>Cubone</a><br>
+        <span class="pokemonId">#104</span>
+        <a>Cubone</a><br>
         <span style=
         "background-color: #E0C068; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3086,7 +3195,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #105 <a>Marowak</a><br>
+        <span class="pokemonId">#105</span>
+        <a>Marowak</a><br>
         <span style=
         "background-color: #E0C068; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3113,7 +3223,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #106 <a>Hitmonlee</a><br>
+        <span class="pokemonId">#106</span>
+        <a>Hitmonlee</a><br>
         <span style=
         "background-color: #C03028; border-style: solid none; border-width: 1px; border-top-color: #F08030; border-bottom-color: #484038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3140,7 +3251,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #107 <a>Hitmonchan</a><br>
+        <span class="pokemonId">#107</span>
+        <a>Hitmonchan</a><br>
         <span style=
         "background-color: #C03028; border-style: solid none; border-width: 1px; border-top-color: #F08030; border-bottom-color: #484038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3167,7 +3279,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #108 <a>Lickitung</a><br>
+        <span class="pokemonId">#108</span>
+        <a>Lickitung</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3194,7 +3307,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #109 <a>Koffing</a><br>
+        <span class="pokemonId">#109</span>
+        <a>Koffing</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3221,7 +3335,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #110 <a>Weezing</a><br>
+        <span class="pokemonId">#110</span>
+        <a>Weezing</a><br>
         <span style=
         "background-color: #A040A0; border-style: solid none; border-width: 1px; border-top-color: #D880B8; border-bottom-color: #483850; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3248,7 +3363,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #111 <a>Rhyhorn</a><br>
+        <span class="pokemonId">#111</span>
+        <a>Rhyhorn</a><br>
         <span style=
         "background-color: #E0C068; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3278,7 +3394,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #112 <a>Rhydon</a><br>
+        <span class="pokemonId">#112</span>
+        <a>Rhydon</a><br>
         <span style=
         "background-color: #E0C068; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3308,7 +3425,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #113 <a>Chansey</a><br>
+        <span class="pokemonId">#113</span>
+        <a>Chansey</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3335,7 +3453,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #114 <a>Tangela</a><br>
+        <span class="pokemonId">#114</span>
+        <a>Tangela</a><br>
         <span style=
         "background-color: #78C850; border-style: solid none; border-width: 1px; border-top-color: #C0F860; border-bottom-color: #588040; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3362,7 +3481,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #115 <a>Kangaskhan</a><br>
+        <span class="pokemonId">#115</span>
+        <a>Kangaskhan</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3389,7 +3509,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #116 <a>Horsea</a><br>
+        <span class="pokemonId">#116</span>
+        <a>Horsea</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3416,7 +3537,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #117 <a>Seadra</a><br>
+        <span class="pokemonId">#117</span>
+        <a>Seadra</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3443,7 +3565,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #118 <a>Goldeen</a><br>
+        <span class="pokemonId">#118</span>
+        <a>Goldeen</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3470,7 +3593,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #119 <a>Seaking</a><br>
+        <span class="pokemonId">#119</span>
+        <a>Seaking</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3497,7 +3621,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #120 <a>Staryu</a><br>
+        <span class="pokemonId">#120</span>
+        <a>Staryu</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3524,7 +3649,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #121 <a>Starmie</a><br>
+        <span class="pokemonId">#121</span>
+        <a>Starmie</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3554,7 +3680,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #122 <a>Mr. Mime</a><br>
+        <span class="pokemonId">#122</span>
+        <a>Mr. Mime</a><br>
         <span style=
         "background-color: #F85888; border-style: solid none; border-width: 1px; border-top-color: #F8C0B0; border-bottom-color: #789010; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3584,7 +3711,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #123 <a>Scyther</a><br>
+        <span class="pokemonId">#123</span>
+        <a>Scyther</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3614,7 +3742,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #124 <a>Jynx</a><br>
+        <span class="pokemonId">#124</span>
+        <a>Jynx</a><br>
         <span style=
         "background-color: #98D8D8; border-style: solid none; border-width: 1px; border-top-color: #D0F8E8; border-bottom-color: #9090A0; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3644,7 +3773,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #125 <a>Electabuzz</a><br>
+        <span class="pokemonId">#125</span>
+        <a>Electabuzz</a><br>
         <span style=
         "background-color: #F8D030; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #B8A038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3671,7 +3801,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #126 <a>Magmar</a><br>
+        <span class="pokemonId">#126</span>
+        <a>Magmar</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3698,7 +3829,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #127 <a>Pinsir</a><br>
+        <span class="pokemonId">#127</span>
+        <a>Pinsir</a><br>
         <span style=
         "background-color: #A8B820; border-style: solid none; border-width: 1px; border-top-color: #D8E030; border-bottom-color: #A8B820; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3725,7 +3857,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #128 <a>Tauros</a><br>
+        <span class="pokemonId">#128</span>
+        <a>Tauros</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3752,7 +3885,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #129 <a>Magikarp</a><br>
+        <span class="pokemonId">#129</span>
+        <a>Magikarp</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3779,7 +3913,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #130 <a>Gyarados</a><br>
+        <span class="pokemonId">#130</span>
+        <a>Gyarados</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3809,7 +3944,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #131 <a>Lapras</a><br>
+        <span class="pokemonId">#131</span>
+        <a>Lapras</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3839,7 +3975,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #132 <a>Ditto</a><br>
+        <span class="pokemonId">#132</span>
+        <a>Ditto</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3866,7 +4003,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #133 <a>Eevee</a><br>
+        <span class="pokemonId">#133</span>
+        <a>Eevee</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3893,7 +4031,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #134 <a>Vaporeon</a><br>
+        <span class="pokemonId">#134</span>
+        <a>Vaporeon</a><br>
         <span style=
         "background-color: #6890F0; border-style: solid none; border-width: 1px; border-top-color: #98D8D8; border-bottom-color: #807870; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3920,7 +4059,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #135 <a>Jolteon</a><br>
+        <span class="pokemonId">#135</span>
+        <a>Jolteon</a><br>
         <span style=
         "background-color: #F8D030; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #B8A038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3947,7 +4087,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #136 <a>Flareon</a><br>
+        <span class="pokemonId">#136</span>
+        <a>Flareon</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -3974,7 +4115,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #137 <a>Porygon</a><br>
+        <span class="pokemonId">#137</span>
+        <a>Porygon</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4001,7 +4143,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #138 <a>Omanyte</a><br>
+        <span class="pokemonId">#138</span>
+        <a>Omanyte</a><br>
         <span style=
         "background-color: #B8A038; border-style: solid none; border-width: 1px; border-top-color: #E0C068; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4031,7 +4174,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #139 <a>Omastar</a><br>
+        <span class="pokemonId">#139</span>
+        <a>Omastar</a><br>
         <span style=
         "background-color: #B8A038; border-style: solid none; border-width: 1px; border-top-color: #E0C068; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4061,7 +4205,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #140 <a>Kabuto</a><br>
+        <span class="pokemonId">#140</span>
+        <a>Kabuto</a><br>
         <span style=
         "background-color: #B8A038; border-style: solid none; border-width: 1px; border-top-color: #E0C068; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4091,7 +4236,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #141 <a>Kabutops</a><br>
+        <span class="pokemonId">#141</span>
+        <a>Kabutops</a><br>
         <span style=
         "background-color: #B8A038; border-style: solid none; border-width: 1px; border-top-color: #E0C068; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4121,7 +4267,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #142 <a>Aerodactyl</a><br>
+        <span class="pokemonId">#142</span>
+        <a>Aerodactyl</a><br>
         <span style=
         "background-color: #B8A038; border-style: solid none; border-width: 1px; border-top-color: #E0C068; border-bottom-color: #886830; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4151,7 +4298,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #143 <a>Snorlax</a><br>
+        <span class="pokemonId">#143</span>
+        <a>Snorlax</a><br>
         <span style=
         "background-color: #A8A878; border-style: solid none; border-width: 1px; border-top-color: #D8D8D0; border-bottom-color: #705848; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4178,7 +4326,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #144 <a>Articuno</a><br>
+        <span class="pokemonId">#144</span>
+        <a>Articuno</a><br>
         <span style=
         "background-color: #98D8D8; border-style: solid none; border-width: 1px; border-top-color: #D0F8E8; border-bottom-color: #9090A0; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4208,7 +4357,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #145 <a>Zapdos</a><br>
+        <span class="pokemonId">#145</span>
+        <a>Zapdos</a><br>
         <span style=
         "background-color: #F8D030; border-style: solid none; border-width: 1px; border-top-color: #F8F878; border-bottom-color: #B8A038; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4238,7 +4388,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #146 <a>Moltres</a><br>
+        <span class="pokemonId">#146</span>
+        <a>Moltres</a><br>
         <span style=
         "background-color: #F08030; border-style: solid none; border-width: 1px; border-top-color: #F8D030; border-bottom-color: #C03028; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4268,7 +4419,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #147 <a>Dratini</a><br>
+        <span class="pokemonId">#147</span>
+        <a>Dratini</a><br>
         <span style=
         "background-color: #7038F8; border-style: solid none; border-width: 1px; border-top-color: #B8A0F8; border-bottom-color: #483890; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4295,7 +4447,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #148 <a>Dragonair</a><br>
+        <span class="pokemonId">#148</span>
+        <a>Dragonair</a><br>
         <span style=
         "background-color: #7038F8; border-style: solid none; border-width: 1px; border-top-color: #B8A0F8; border-bottom-color: #483890; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4322,7 +4475,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #149 <a>Dragonite</a><br>
+        <span class="pokemonId">#149</span>
+        <a>Dragonite</a><br>
         <span style=
         "background-color: #7038F8; border-style: solid none; border-width: 1px; border-top-color: #B8A0F8; border-bottom-color: #483890; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4352,7 +4506,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #150 <a>Mewtwo</a><br>
+        <span class="pokemonId">#150</span>
+        <a>Mewtwo</a><br>
         <span style=
         "background-color: #F85888; border-style: solid none; border-width: 1px; border-top-color: #F8C0B0; border-bottom-color: #789010; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
@@ -4379,7 +4534,8 @@
         </div>
       </div>
       <div class="lightbox-caption" style="width:105px;">
-        #151 <a>Mew</a><br>
+        <span class="pokemonId">#151</span>
+        <a>Mew</a><br>
         <span style=
         "background-color: #F85888; border-style: solid none; border-width: 1px; border-top-color: #F8C0B0; border-bottom-color: #789010; border-radius: 5px; padding: 0.15em; font-variant: small-caps; font-size: 9pt; color: #F8F8F8; text-shadow: 0px 1px 1px #807870;">
         <a><span style=
