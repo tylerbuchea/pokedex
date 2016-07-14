@@ -70,7 +70,7 @@
       const q = input.value;
       $('.wikia-gallery-item').each(function(i, pokemon) {
         const pokemonName = $(pokemon).find('.lightbox-caption > a').html();
-        if (q.length && q[0] !== pokemonName[0].toLowerCase()) {
+        if (q.length && q[0].toLowerCase() !== pokemonName[0].toLowerCase()) {
           $(pokemon).addClass('hide');
         } else {
           $(pokemon).removeClass('hide');
