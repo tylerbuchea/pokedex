@@ -16,11 +16,32 @@
     a {
       text-decoration: none;
     }
+    .clearSearch {
+      position: relative;
+      max-width: 400px;
+      width: 100%;
+      margin: auto;
+      z-index: 12;
+    }
+    .clearSearch .clearButton {
+      position: absolute;
+      background: #222224;
+      color: #F0F0F0;
+      right: 10px;
+      top: 7px;
+      border: none;
+      cursor: pointer;
+    }
     .search {
       background: #F00000;
       display: block;
       padding: 20px;
       text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
     }
     .field {
       border: 0;
@@ -39,15 +60,8 @@
       outline: none;
       box-shadow: 0px 9px 20px rgba(75, 72, 72, 0.3);
     }
-    .field::before{
-      content: "x";
-      color: #000;
-      position: absolute;
-      z-index: 12;
-      top: 10;
-      left: 10;
-    }
     .wikia-gallery {
+      margin-top: 70px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -58,6 +72,7 @@
       flex: 1;
       padding: 5px;
       padding-bottom: 15px;
+      cursor: pointer;
       /*text-align:center;*/
     }
     .lightbox-caption span a {
@@ -69,6 +84,14 @@
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
   <script>
+    $(document).on('click', '.wikia-gallery-item', function(ev) {
+      const pokemon = $(ev.currentTarget);
+      const _pokemonId = pokemon.find('.pokemonId').html();
+      const pokemonId = parseInt(_pokemonId.slice(1)).toString();
+      document.querySelector('.field').value = pokemonId;
+      search(pokemonId);
+    });
+
     function filter(pokemon, q) {
       const pokemonName = $(pokemon).find('.lightbox-caption > a').html().toLowerCase();
       const doesMatch = (pokemonName.search(q) === 0);
@@ -80,10 +103,10 @@
     }
 
     function details(pokemon, id) {
-      const idHtml = $(pokemon).find('.lightbox-caption > .pokemonId').html().split('');
-      idHtml.shift();
-      const pokemonId = parseInt(idHtml.join(''));
-      if (id !== pokemonId) {
+      const pokemonId = parseInt(
+        $(pokemon).find('.lightbox-caption > .pokemonId').html().slice(1)
+      );
+      if (pokemonId > id + 2 || pokemonId < id - 2) {
         $(pokemon).addClass('hide');
       } else {
         $(pokemon).removeClass('hide');
@@ -91,7 +114,9 @@
     }
 
     function search(input) {
-      const q = input.value.toLowerCase();
+      const q = input.toLowerCase();
+      toggleClearButton(input);
+
       $('.wikia-gallery-item').each(function(i, pokemon) {
         if (q.length && parseInt(q) > -1) {
           details(pokemon, parseInt(q));
@@ -100,11 +125,28 @@
         }
       });
     }
+
+    function clearSearch() {
+      document.querySelector('.field').value = '';
+      search('');
+    }
+
+    function toggleClearButton(input) {
+      const $clearButton = $('.clearSearch .clearButton');
+      if (input) {
+        $clearButton.removeClass('hide');
+      } else {
+        $clearButton.addClass('hide');
+      }
+    }
   </script>
 </head>
 <body>
   <div class="search">
-    <input onkeyup="search(this)" class="field" type="text" placeholder="Search Pokemon by Name or Number" />
+    <div class="clearSearch">
+      <button class="clearButton hide" onclick="clearSearch()">X</button>
+    </div>
+    <input onkeyup="search(this.value)" class="field" type="text" placeholder="Search Pokemon by Name or Number" />
   </div>
 
   <div class=
